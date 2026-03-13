@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ambassador of Christ — A Global Faith Community</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112244;
+    --navy-light: #1a3260;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --gold-pale: #f5e6b8;
+    --white: #fafaf8;
+    --off-white: #f0ede6;
+    --text-muted: #8a9bb5;
+    --border: rgba(201,168,76,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; letter-spacing: 0.04em;
+    color: var(--gold-light);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .nav-logo span { color: var(--white); }
+  .nav-cross { font-size: 1.1rem; color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--off-white); text-decoration: none;
+    font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 500; opacity: 0.8;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--gold); transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold-light); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), #a8852e);
+    color: var(--navy) !important; padding: 0.5rem 1.4rem !important;
+    border-radius: 2px; font-weight: 600 !important;
+    opacity: 1 !important; letter-spacing: 0.1em;
+  }
+  .nav-cta::after { display: none !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--gold); transition: all 0.3s; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, #1a3260 0%, #0a1628 60%);
+  }
+  .hero-cross-large {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -55%);
+    font-size: 28rem; color: rgba(201,168,76,0.04);
+    line-height: 1; pointer-events: none; user-select: none;
+    font-family: serif;
+  }
+  .hero-rays {
+    position: absolute; inset: 0;
+    background: conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(201,168,76,0.03) 30deg, transparent 60deg, transparent 90deg, rgba(201,168,76,0.02) 120deg, transparent 150deg, transparent 180deg, rgba(201,168,76,0.03) 210deg, transparent 240deg, transparent 270deg, rgba(201,168,76,0.02) 300deg, transparent 330deg, transparent 360deg);
+    animation: rotate 60s linear infinite;
+  }
+  @keyframes rotate { to { transform: rotate(360deg); } }
+  .hero-content { position: relative; z-index: 2; max-width: 780px; }
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 1.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; width: 40px; height: 1px; background: var(--gold); opacity: 0.5;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    font-weight: 300; line-height: 1.05;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-title em { font-style: italic; color: var(--gold-light); font-weight: 400; }
+  .hero-verse {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 1.15rem; color: var(--gold-pale);
+    margin-bottom: 0.5rem; opacity: 0.9;
+  }
+  .hero-ref { font-size: 0.78rem; letter-spacing: 0.15em; color: var(--gold); opacity: 0.7; margin-bottom: 3rem; text-transform: uppercase; }
+  .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), #a8852e);
+    color: var(--navy); padding: 0.9rem 2.2rem;
+    font-family: 'Jost', sans-serif; font-size: 0.82rem;
+    font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; border-radius: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 30px rgba(201,168,76,0.25);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(201,168,76,0.4); }
+  .btn-ghost {
+    border: 1px solid var(--border);
+    color: var(--white); padding: 0.9rem 2.2rem;
+    font-family: 'Jost', sans-serif; font-size: 0.82rem;
+    font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; border-radius: 2px;
+    transition: all 0.3s ease; background: rgba(255,255,255,0.03);
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold-light); background: rgba(201,168,76,0.05); }
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted); z-index: 2; animation: bounce 2s infinite;
+  }
+  .hero-scroll::after { content: '↓'; font-size: 1rem; }
+  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 300; line-height: 1.15; margin-bottom: 1.2rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold-light); }
+  .section-sub { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; max-width: 520px; }
+  .divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin: 1.5rem 0;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 2.5rem 4rem;
+  }
+  .stats-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 600; color: var(--gold-light);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.4rem; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--navy); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+  .about-visual {
+    position: relative; aspect-ratio: 3/4; max-height: 480px;
+    background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+    border: 1px solid var(--border); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .about-visual-cross {
+    font-family: serif; font-size: 10rem;
+    color: rgba(201,168,76,0.15); line-height: 1;
+  }
+  .about-visual-glow {
+    position: absolute; width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(201,168,76,0.15), transparent);
+    border-radius: 50%;
+  }
+  .about-visual-tag {
+    position: absolute; bottom: 2rem; right: -1.5rem;
+    background: var(--gold); color: var(--navy);
+    padding: 1rem 1.5rem; font-weight: 600; font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+  .values-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.2rem; }
+  .value-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .value-icon { color: var(--gold); font-size: 1.2rem; margin-top: 0.1rem; flex-shrink: 0; }
+  .value-text h4 { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+  .value-text p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── BLOG ── */
+  #blog { background: var(--navy-mid); }
+  .blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
+  .blog-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 1.5px; max-width: 1200px; margin: 0 auto 2rem; background: var(--border); }
+  .blog-card { background: var(--navy); padding: 2.5rem; transition: all 0.3s ease; cursor: pointer; }
+  .blog-card:hover { background: #0f1e3a; }
+  .blog-card.featured { grid-row: span 2; background: linear-gradient(160deg, #0f1e3a, var(--navy)); }
+  .blog-tag {
+    display: inline-block; font-size: 0.68rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 1.2rem;
+  }
+  .blog-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 400; line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+  .blog-card.featured h3 { font-size: 1.9rem; }
+  .blog-card p { font-size: 0.87rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem; }
+  .blog-meta { display: flex; align-items: center; gap: 1rem; }
+  .blog-avatar { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), #a8852e); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: var(--navy); flex-shrink: 0; }
+  .blog-meta-text { font-size: 0.78rem; color: var(--text-muted); }
+  .blog-meta-text strong { color: var(--off-white); font-weight: 500; }
+
+  /* ── VIDEOS ── */
+  #videos { background: var(--navy); }
+  .videos-inner { max-width: 1200px; margin: 0 auto; }
+  .videos-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+  .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .video-card {
+    background: var(--navy-mid); border: 1px solid var(--border);
+    border-radius: 4px; overflow: hidden; transition: all 0.3s ease; cursor: pointer;
+  }
+  .video-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+  .video-thumb {
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, var(--navy-light), #0a1a35);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .video-play {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(201,168,76,0.9); display: flex; align-items: center;
+    justify-content: center; font-size: 1.1rem; color: var(--navy);
+    transition: transform 0.3s ease;
+  }
+  .video-card:hover .video-play { transform: scale(1.1); }
+  .video-thumb-cross { position: absolute; font-size: 8rem; color: rgba(255,255,255,0.04); font-family: serif; }
+  .video-info { padding: 1.2rem; }
+  .video-info h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.5rem; line-height: 1.3; }
+  .video-info p { font-size: 0.8rem; color: var(--text-muted); }
+
+  /* ── TESTIMONY ── */
+  #community {
+    background: var(--navy-mid);
+    background-image: radial-gradient(ellipse at 80% 50%, rgba(26,50,96,0.6), transparent);
+  }
+  .testimony-inner { max-width: 1200px; margin: 0 auto; }
+  .testimony-header { margin-bottom: 3rem; }
+  .testimony-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .testimony-card {
+    border: 1px solid var(--border); padding: 2rem;
+    background: rgba(10,22,40,0.5); border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .testimony-card:hover { border-color: rgba(201,168,76,0.4); background: rgba(10,22,40,0.8); }
+  .testimony-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; color: var(--gold); opacity: 0.3; line-height: 0.8;
+    margin-bottom: 1rem;
+  }
+  .testimony-card p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 1.05rem; line-height: 1.7;
+    color: var(--off-white); margin-bottom: 1.5rem;
+  }
+  .testimony-author { display: flex; align-items: center; gap: 0.8rem; }
+  .t-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), #a8852e);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.8rem; color: var(--navy);
+  }
+  .t-name { font-size: 0.85rem; font-weight: 600; }
+  .t-loc { font-size: 0.75rem; color: var(--text-muted); }
+
+  /* ── EVENTS ── */
+  #events { background: var(--navy); }
+  .events-inner { max-width: 1200px; margin: 0 auto; }
+  .events-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+  .event-card {
+    display: flex; gap: 1.5rem; border: 1px solid var(--border);
+    padding: 1.8rem; border-radius: 4px;
+    transition: all 0.3s ease; cursor: pointer;
+  }
+  .event-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.03); }
+  .event-date {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-width: 60px; height: 60px; background: linear-gradient(135deg, var(--gold), #a8852e);
+    color: var(--navy); border-radius: 4px;
+  }
+  .event-date .day { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; line-height: 1; }
+  .event-date .month { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; }
+  .event-info h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin-bottom: 0.4rem; }
+  .event-info p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+  .event-info .event-meta { font-size: 0.75rem; color: var(--gold); margin-top: 0.6rem; letter-spacing: 0.05em; }
+
+  /* ── NEWSLETTER ── */
+  .newsletter-strip {
+    background: linear-gradient(135deg, var(--navy-light), #0a1a35);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 4rem;
+    text-align: center;
+  }
+  .newsletter-strip h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 300; margin-bottom: 0.8rem;
+  }
+  .newsletter-strip p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
+  .newsletter-form { display: flex; gap: 0; max-width: 480px; margin: 0 auto; }
+  .newsletter-form input {
+    flex: 1; padding: 0.9rem 1.5rem;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+    border-right: none; color: var(--white);
+    font-family: 'Jost', sans-serif; font-size: 0.9rem;
+    outline: none; border-radius: 2px 0 0 2px;
+  }
+  .newsletter-form input::placeholder { color: var(--text-muted); }
+  .newsletter-form input:focus { border-color: rgba(201,168,76,0.4); }
+  .newsletter-form button {
+    background: var(--gold); color: var(--navy); border: none;
+    padding: 0.9rem 1.8rem; font-family: 'Jost', sans-serif;
+    font-weight: 600; font-size: 0.82rem; letter-spacing: 0.1em;
+    text-transform: uppercase; cursor: pointer; border-radius: 0 2px 2px 0;
+    transition: background 0.2s ease;
+  }
+  .newsletter-form button:hover { background: var(--gold-light); }
+
+  /* ── STORE ── */
+  #store { background: var(--navy-mid); }
+  .store-inner { max-width: 1200px; margin: 0 auto; }
+  .store-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold); padding: 0.4rem 1rem;
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    border-radius: 2px; margin-bottom: 1.5rem;
+  }
+  .store-products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .product-card {
+    background: var(--navy); border: 1px solid var(--border);
+    border-radius: 4px; overflow: hidden;
+    transition: all 0.3s ease; cursor: pointer;
+  }
+  .product-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .product-img {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #0f1e3a, #1a3260);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; position: relative; overflow: hidden;
+  }
+  .product-img-bg { position: absolute; font-size: 8rem; color: rgba(201,168,76,0.05); font-family: serif; }
+  .product-emoji { position: relative; z-index: 1; }
+  .product-info { padding: 1.2rem; }
+  .product-info h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .product-info .price { color: var(--gold-light); font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; }
+  .product-info .soon { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+  .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+  .form-group input, .form-group textarea, .form-group select {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    color: var(--white); padding: 0.85rem 1.2rem;
+    font-family: 'Jost', sans-serif; font-size: 0.9rem;
+    outline: none; border-radius: 2px; transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: rgba(201,168,76,0.5); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select option { background: var(--navy); }
+  .form-submit {
+    background: linear-gradient(135deg, var(--gold), #a8852e);
+    color: var(--navy); border: none; padding: 1rem 2rem;
+    font-family: 'Jost', sans-serif; font-weight: 700;
+    font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase;
+    cursor: pointer; border-radius: 2px; transition: all 0.3s ease; align-self: flex-start;
+  }
+  .form-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(201,168,76,0.3); }
+  .contact-info { padding-top: 1rem; }
+  .contact-info p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 2.5rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link { display: flex; align-items: center; gap: 1rem; color: var(--off-white); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .contact-link:hover { color: var(--gold-light); }
+  .contact-link-icon { width: 40px; height: 40px; background: rgba(201,168,76,0.1); border: 1px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+
+  /* ── SOCIAL BAR ── */
+  .social-bar {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    padding: 3rem 4rem; text-align: center;
+  }
+  .social-bar p { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .social-icons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .social-icon {
+    width: 48px; height: 48px; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 4px; font-size: 1.1rem; text-decoration: none;
+    color: var(--text-muted); transition: all 0.3s ease;
+    background: rgba(255,255,255,0.02);
+  }
+  .social-icon:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.05); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060e1c;
+    padding: 4rem 4rem 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 0 auto; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+  .footer-brand .nav-logo { margin-bottom: 1rem; display: inline-flex; }
+  .footer-brand p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; max-width: 280px; }
+  .footer-col h5 { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.87rem; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--gold-light); }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--text-muted); }
+  .footer-bottom a { color: var(--text-muted); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--gold); }
+
+  /* ── MOBILE NAV ── */
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: rgba(10,22,40,0.98); backdrop-filter: blur(20px);
+    flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+  }
+  .mobile-menu.active { display: flex; }
+  .mobile-menu a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; color: var(--white); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--gold-light); }
+  .mobile-close { position: absolute; top: 1.5rem; right: 2rem; font-size: 2rem; color: var(--gold); cursor: pointer; background: none; border: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    section { padding: 5rem 2rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-visual { max-height: 300px; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .blog-card.featured { grid-row: span 1; }
+    .video-grid { grid-template-columns: 1fr 1fr; }
+    .testimony-grid { grid-template-columns: 1fr; }
+    .events-grid { grid-template-columns: 1fr; }
+    .store-products { grid-template-columns: repeat(2, 1fr); }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .stats-strip { padding: 2rem; }
+    .social-bar, .newsletter-strip { padding: 3rem 2rem; }
+    footer { padding: 3rem 2rem 2rem; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero-cross-large { font-size: 16rem; }
+    .video-grid { grid-template-columns: 1fr; }
+    .store-products { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-form input { border-right: 1px solid var(--border); border-radius: 2px; }
+    .newsletter-form button { border-radius: 2px; }
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">
+    <span class="nav-cross">✝</span>
+    Ambassador <span>&nbsp;of Christ</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#videos">Videos</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#store">Store</a></li>
+    <li><a href="#contact" class="nav-cta">Join Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#home" onclick="toggleMenu()">Home</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#blog" onclick="toggleMenu()">Blog</a>
+  <a href="#videos" onclick="toggleMenu()">Videos</a>
+  <a href="#community" onclick="toggleMenu()">Community</a>
+  <a href="#events" onclick="toggleMenu()">Events</a>
+  <a href="#store" onclick="toggleMenu()">Store</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-rays"></div>
+  <div class="hero-cross-large">✝</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">A Global Faith Community</div>
+    <h1 class="hero-title">
+      We Are <em>Ambassadors</em><br>of Christ
+    </h1>
+    <p class="hero-verse">"We are therefore Christ's ambassadors, as though God were making his appeal through us."</p>
+    <p class="hero-ref">2 Corinthians 5:20</p>
+    <div class="hero-buttons">
+      <a href="#community" class="btn-primary">Join the Community</a>
+      <a href="#about" class="btn-ghost">Our Mission</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-num">12K+</div>
+      <div class="stat-label">Community Members</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">340+</div>
+      <div class="stat-label">Devotionals Published</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">58</div>
+      <div class="stat-label">Nations Reached</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1,200+</div>
+      <div class="stat-label">Testimonies Shared</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid fade-in">
+    <div class="about-visual">
+      <div class="about-visual-glow"></div>
+      <div class="about-visual-cross">✝</div>
+      <div class="about-visual-tag">Est. 2024 · Global Ministry</div>
+    </div>
+    <div>
+      <div class="section-label">About Us</div>
+      <h2 class="section-title">A Digital Home for <em>Believers Worldwide</em></h2>
+      <div class="divider"></div>
+      <p class="section-sub">Ambassador of Christ is a digital faith community where believers are encouraged, spiritually strengthened, and connected globally. We carry the Gospel into every corner of the internet — one heart at a time.</p>
+      <div class="values-list">
+        <div class="value-item">
+          <div class="value-icon">✦</div>
+          <div class="value-text">
+            <h4>The Word of God</h4>
+            <p>Weekly devotionals, teachings, and blogs rooted deeply in Scripture to nourish your faith daily.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">✦</div>
+          <div class="value-text">
+            <h4>Community & Fellowship</h4>
+            <p>A safe and encouraging space for believers to share testimonies, pray together, and grow in faith.</p>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">✦</div>
+          <div class="value-text">
+            <h4>Global Outreach</h4>
+            <p>Spreading the love of Christ across nations through digital ministry, events, and missions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="blog-header fade-in">
+    <div>
+      <div class="section-label">Blog & Devotionals</div>
+      <h2 class="section-title">Fresh <em>Word</em> for Your Journey</h2>
+    </div>
+    <a href="#blog" class="btn-ghost" style="font-size:0.78rem;padding:0.7rem 1.5rem">View All Posts →</a>
+  </div>
+  <div class="blog-grid fade-in">
+    <div class="blog-card featured">
+      <span class="blog-tag">Featured Devotional</span>
+      <h3>"Walking in the Spirit: How to Surrender Daily and Let God Lead Your Path"</h3>
+      <p>Many believers struggle with the gap between knowing God's will and actually walking in it. This devotional unpacks what it truly means to surrender your plans and trust the One who holds all things together.</p>
+      <p>When we talk about walking in the Spirit, we're not speaking of some mystical experience reserved for a select few. It is the daily, ordinary, beautiful choice to yield...</p>
+      <div class="blog-meta">
+        <div class="blog-avatar">A</div>
+        <div class="blog-meta-text"><strong>Admin</strong> · June 14, 2025 · 8 min read</div>
+      </div>
+    </div>
+    <div class="blog-card">
+      <span class="blog-tag">Encouragement</span>
+      <h3>When Prayers Feel Unanswered: Trusting God in the Silence</h3>
+      <p>Sometimes God's silence is not His absence. A reflection on waiting, faith, and holding on.</p>
+      <div class="blog-meta">
+        <div class="blog-avatar">S</div>
+        <div class="blog-meta-text"><strong>Sister Grace</strong> · June 10, 2025</div>
+      </div>
+    </div>
+    <div class="blog-card">
+      <span class="blog-tag">Youth Corner</span>
+      <h3>Faith in Your 20s: Navigating Life's Pressure Without Losing God</h3>
+      <p>A word for the young believers pressing through the noise of the modern world.</p>
+      <div class="blog-meta">
+        <div class="blog-avatar">J</div>
+        <div class="blog-meta-text"><strong>Brother James</strong> · June 7, 2025</div>
+      </div>
+    </div>
+    <div class="blog-card">
+      <span class="blog-tag">Teaching</span>
+      <h3>The Power of Communion: More Than Just Bread and Wine</h3>
+      <p>A deep dive into the spiritual significance of the Lord's Table.</p>
+      <div class="blog-meta">
+        <div class="blog-avatar">P</div>
+        <div class="blog-meta-text"><strong>Pastor David</strong> · June 3, 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos">
+  <div class="videos-inner">
+    <div class="videos-header fade-in">
+      <div>
+        <div class="section-label">Video Messages</div>
+        <h2 class="section-title">Watch, <em>Be Inspired</em>, Share</h2>
+      </div>
+      <a href="https://youtube.com" target="_blank" class="btn-ghost" style="font-size:0.78rem;padding:0.7rem 1.5rem">YouTube Channel →</a>
+    </div>
+    <div class="video-grid fade-in">
+      <div class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-cross">✝</div>
+          <div class="video-play">▶</div>
+        </div>
+        <div class="video-info">
+          <h4>Sunday Service — "The Grace That Covers All"</h4>
+          <p>June 15, 2025 · 42 min · 3.2K views</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-cross">✝</div>
+          <div class="video-play">▶</div>
+        </div>
+        <div class="video-info">
+          <h4>Midweek Prayer — Interceding for the Nations</h4>
+          <p>June 12, 2025 · 28 min · 1.8K views</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb">
+          <div class="video-thumb-cross">✝</div>
+          <div class="video-play">▶</div>
+        </div>
+        <div class="video-info">
+          <h4>Youth Talk — Identity in Christ vs. Social Media</h4>
+          <p>June 9, 2025 · 18 min · 5.1K views</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIES / COMMUNITY -->
+<section id="community">
+  <div class="testimony-inner">
+    <div class="testimony-header fade-in">
+      <div class="section-label">Community Testimonies</div>
+      <h2 class="section-title">What <em>God Has Done</em></h2>
+      <div class="divider"></div>
+      <p class="section-sub">Real stories from real people. God is still moving, healing, and transforming lives.</p>
+    </div>
+    <div class="testimony-grid fade-in">
+      <div class="testimony-card">
+        <div class="testimony-quote">"</div>
+        <p>I found this community during the darkest season of my life. The weekly devotionals became my lifeline. God used this platform to restore my faith and heal my family.</p>
+        <div class="testimony-author">
+          <div class="t-avatar">M</div>
+          <div>
+            <div class="t-name">Mary K.</div>
+            <div class="t-loc">Nairobi, Kenya</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimony-card">
+        <div class="testimony-quote">"</div>
+        <p>Three years ago I was ready to give up on God. A friend shared one of the video messages and it wrecked me in the best way. I gave my life to Christ that night.</p>
+        <div class="testimony-author">
+          <div class="t-avatar">T</div>
+          <div>
+            <div class="t-name">Tobias M.</div>
+            <div class="t-loc">Lagos, Nigeria</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimony-card">
+        <div class="testimony-quote">"</div>
+        <p>As a young believer in university, I was surrounded by pressure to compromise. This community kept me grounded in the Word. I graduated with my faith stronger than ever.</p>
+        <div class="testimony-author">
+          <div class="t-avatar">A</div>
+          <div>
+            <div class="t-name">Amara S.</div>
+            <div class="t-loc">Accra, Ghana</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: 3rem;">
+      <a href="#contact" class="btn-primary">Share Your Testimony</a>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="events-inner">
+    <div class="fade-in">
+      <div class="section-label">Events & Announcements</div>
+      <h2 class="section-title">Upcoming <em>Gatherings</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="events-grid fade-in">
+      <div class="event-card">
+        <div class="event-date"><div class="day">22</div><div class="month">Jun</div></div>
+        <div class="event-info">
+          <h4>Online Prayer Night — "Healing the Nations"</h4>
+          <p>A global intercession session open to all members. Come expecting breakthrough.</p>
+          <div class="event-meta">📍 Online via Zoom · 8:00 PM EAT</div>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date"><div class="day">05</div><div class="month">Jul</div></div>
+        <div class="event-info">
+          <h4>Youth Conference 2025 — "Unashamed"</h4>
+          <p>A one-day conference for young adults aged 18–35. Guest speakers, worship, and more.</p>
+          <div class="event-meta">📍 Nairobi, Kenya · 9:00 AM EAT</div>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date"><div class="day">19</div><div class="month">Jul</div></div>
+        <div class="event-info">
+          <h4>Bible Study Series — Book of Romans</h4>
+          <p>Join our 8-week deep dive into the Book of Romans. All levels welcome.</p>
+          <div class="event-meta">📍 Online Weekly · 7:00 PM EAT</div>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date"><div class="day">02</div><div class="month">Aug</div></div>
+        <div class="event-info">
+          <h4>Community Day — Fellowship & Worship</h4>
+          <p>An in-person gathering to celebrate what God is doing in our community.</p>
+          <div class="event-meta">📍 Nairobi, Kenya · 2:00 PM EAT</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-strip fade-in">
+  <h2>Stay Rooted in the <em style="font-family:'Cormorant Garamond',serif;color:var(--gold-light);font-style:italic">Word</em></h2>
+  <p>Subscribe for weekly devotionals, event updates, and community news — delivered to your inbox.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="Your email address">
+    <button type="button">Subscribe</button>
+  </div>
+</div>
+
+<!-- STORE -->
+<section id="store">
+  <div class="store-inner">
+    <div class="fade-in">
+      <span class="store-badge">🛍️ Coming Soon</span>
+      <div class="section-label">Faith Store</div>
+      <h2 class="section-title">Wear Your <em>Faith</em> Boldly</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Faith-inspired merchandise for everyday believers. T-shirts, mugs, journals, and more — coming soon.</p>
+    </div>
+    <div class="store-products fade-in">
+      <div class="product-card">
+        <div class="product-img"><div class="product-img-bg">✝</div><div class="product-emoji">👕</div></div>
+        <div class="product-info">
+          <h4>"Ambassador" Tee</h4>
+          <div class="price">$28.00</div>
+          <div class="soon">Coming Soon</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><div class="product-img-bg">✝</div><div class="product-emoji">📓</div></div>
+        <div class="product-info">
+          <h4>Faith Journal</h4>
+          <div class="price">$18.00</div>
+          <div class="soon">Coming Soon</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><div class="product-img-bg">✝</div><div class="product-emoji">☕</div></div>
+        <div class="product-info">
+          <h4>Devotion Mug</h4>
+          <div class="price">$22.00</div>
+          <div class="soon">Coming Soon</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><div class="product-img-bg">✝</div><div class="product-emoji">📿</div></div>
+        <div class="product-info">
+          <h4>Scripture Bracelet</h4>
+          <div class="price">$14.00</div>
+          <div class="soon">Coming Soon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="fade-in">
+      <div class="section-label">Get in Touch</div>
+      <h2 class="section-title">We'd Love to <em>Hear from You</em></h2>
+      <div class="divider"></div>
+      <div class="contact-info">
+        <p>Whether you have a prayer request, a testimony to share, a question, or you'd like to partner with us — our inbox is always open. You are never alone.</p>
+        <div class="contact-links">
+          <a href="mailto:hello@ambassadorofchrist.org" class="contact-link">
+            <div class="contact-link-icon">✉️</div>
+            hello@ambassadorofchrist.org
+          </a>
+          <a href="https://youtube.com" target="_blank" class="contact-link">
+            <div class="contact-link-icon">▶️</div>
+            YouTube Channel
+          </a>
+          <a href="https://instagram.com" target="_blank" class="contact-link">
+            <div class="contact-link-icon">📸</div>
+            @AmbassadorOfChrist
+          </a>
+          <a href="https://tiktok.com" target="_blank" class="contact-link">
+            <div class="contact-link-icon">🎵</div>
+            @AmbassadorOfChrist
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="fade-in">
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="John">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Doe">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="john@example.com">
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <select>
+            <option>Prayer Request</option>
+            <option>Share a Testimony</option>
+            <option>Partnership Inquiry</option>
+            <option>General Enquiry</option>
+            <option>Join the Community</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Write your message here..."></textarea>
+        </div>
+        <button class="form-submit" type="button">Send Message ✝</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL BAR -->
+<div class="social-bar">
+  <p>Follow Us</p>
+  <div class="social-icons">
+    <a href="https://youtube.com" target="_blank" class="social-icon" title="YouTube">▶</a>
+    <a href="https://tiktok.com" target="_blank" class="social-icon" title="TikTok">♪</a>
+    <a href="https://instagram.com" target="_blank" class="social-icon" title="Instagram">◉</a>
+    <a href="https://twitter.com" target="_blank" class="social-icon" title="Twitter/X">𝕏</a>
+    <a href="https://facebook.com" target="_blank" class="social-icon" title="Facebook">f</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#home" class="nav-logo"><span class="nav-cross">✝</span> Ambassador <span>&nbsp;of Christ</span></a>
+      <p>A digital faith community spreading the love of God to every nation. Encouraging believers, sharing the Word, and connecting the global Church.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Ministry</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#blog">Devotionals</a></li>
+        <li><a href="#videos">Video Messages</a></li>
+        <li><a href="#events">Events</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Community</h5>
+      <ul>
+        <li><a href="#community">Testimonies</a></li>
+        <li><a href="#contact">Prayer Requests</a></li>
+        <li><a href="#contact">Join Us</a></li>
+        <li><a href="#store">Faith Store</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
+        <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+        <li><a href="https://tiktok.com" target="_blank">TikTok</a></li>
+        <li><a href="https://twitter.com" target="_blank">Twitter/X</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Ambassador of Christ. All rights reserved.</span>
+    <span><a href="#">Privacy Policy</a> · <a href="#">Terms of Use</a></span>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('active');
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+      nav.style.padding = '0.8rem 4rem';
+      nav.style.borderBottomColor = 'rgba(201,168,76,0.15)';
+    } else {
+      nav.style.padding = '1.2rem 4rem';
+    }
+  });
+
+  // Newsletter button
+  document.querySelector('.newsletter-form button').addEventListener('click', function() {
+    const input = this.previousElementSibling;
+    if (input.value && input.value.includes('@')) {
+      this.textContent = '✓ Subscribed!';
+      this.style.background = '#2d7a4f';
+      input.value = '';
+      setTimeout(() => { this.textContent = 'Subscribe'; this.style.background = ''; }, 3000);
+    } else {
+      input.style.borderColor = 'rgba(201,168,76,0.6)';
+      input.focus();
+    }
+  });
+
+  // Contact form
+  document.querySelector('.form-submit').addEventListener('click', function() {
+    this.textContent = '✝ Message Sent — God Bless You!';
+    this.style.background = '#2d7a4f';
+    this.style.color = '#fff';
+    setTimeout(() => {
+      this.textContent = 'Send Message ✝';
+      this.style.background = '';
+      this.style.color = '';
+    }, 4000);
+  });
+</script>
+</body>
+</html>
